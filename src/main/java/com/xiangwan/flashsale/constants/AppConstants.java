@@ -1,6 +1,6 @@
 package com.xiangwan.flashsale.constants;
 
-import com.xiangwan.flashsale.result.CodeMessage;
+import com.xiangwan.flashsale.logic.result.CodeMessage;
 
 public class AppConstants {
 	public final static String SUCCESS = "success"; 

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xiangwan.flashsale.constants.AppConstants;
-import com.xiangwan.flashsale.result.Result;
+import com.xiangwan.flashsale.logic.result.Result;
 
 @Controller
 @RequestMapping(value="/demo")//(value="/demo", produces="application/json;charset=UTF-8")

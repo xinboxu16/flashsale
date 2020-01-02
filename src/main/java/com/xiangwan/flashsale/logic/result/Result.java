@@ -1,4 +1,4 @@
-package com.xiangwan.flashsale.result;
+package com.xiangwan.flashsale.logic.result;
 
 public class Result<T> {
 	private int code;
