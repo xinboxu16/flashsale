@@ -22,6 +22,12 @@ public class Result<T> {
 		this.msg = codeMsg.getMsg();
 	}
 	
+	public Result(T data) {
+		this.code = 0;
+		this.msg = "";
+		this.data = data;
+	}
+	
 	public int getCode() {
 		return code;
 	}
