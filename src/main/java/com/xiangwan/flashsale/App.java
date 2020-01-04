@@ -1,4 +1,4 @@
-package com.xiangwan.flashsale;
+ package com.xiangwan.flashsale;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

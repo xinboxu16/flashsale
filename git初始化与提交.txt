@@ -1,0 +1,7 @@
+现在github上创建文件夹 然后init初始化 选择https方式 ssh方式需要密钥
+echo "# flashsale" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/xinboxu16/flashsale.git
+git push -u origin master

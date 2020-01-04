@@ -44,7 +44,7 @@ public class DemoController {
 	@RequestMapping("/db/get")
 	@ResponseBody
 	public Result<User> doGet() {
-		User user = this.userService.getUserById((long)1);
+		User user = this.userService.getUserById((long)2);
 		return new Result<User>(user);
 	}
 }
