@@ -1,0 +1,64 @@
+create table `user`(
+	`id` bigint(20) not null auto_increment comment '主键',
+	primary key (`id`)
+) engine=innodb default charset=utf8mb4 comment '用户表'
+alter table user add column `nickName` varchar(50) not null comment '用户名';
+alter table user add column `salt` varchar(10) default null;
+alter table user add column `head` varchar(128) default null comment '头像 云存储id';
+alter table user add column `registerDate` datetime default null comment '注册时间';
+alter table user add column `lastLoginDate` datetime default null comment '上次登陆时间';
+alter table user add column `loginCount` int(11) default '0' comment '登录次数';
+alter table user change `phoneNumber` `phoneNumber` int(12) default '0' comment '手机号码';
+alter table user add column `password` varchar(32) not null comment 'md5 MD5加密 (密码明文+固定salt)';
+insert into user (name,nickName,salt,phoneNumber,password) values('cuiqi','崔琦','a1b2c3d5e6',13611111111,'a435b9af1d3a1f1655c73bcedacf531c');
+
+create table `goods`(
+	`id` bigint(20) not null auto_increment comment '商品id',
+	`goodsName` varchar(16) default null comment '商品名称',
+	`goodsTitle` varchar(64) default null comment '商品标题',
+	`goodsImg` varchar(64) default null comment '商品图片',
+	`goodsDetail` text comment '商品详情',
+	`goodsPrice` decimal(10,2) default '0.00' comment '商品单价',
+	`goodsStock` int(11) default '0' comment '商品库存 -1表示没有限制',
+	primary key (`id`)
+) engine=innodb auto_increment=3 default charset=utf8mb4 comment '商品表 auto_increment自动增长间隔为3';
+
+insert into `goods`values(1,'iphoneX','Apple Iphone X(A1865) 64G 玫瑰红 移动联通电信4G手机','/img/iphonex.png','地球第一手机 买它',8765.00,10000),(2,'华为Mate30','华为Mate 30 8G+128G版 月光银 移动联通电信5G手机','/img/mate30.png','宇宙第一手机 主播推荐 买它',9765.00,-1);
+
+create table `sale_goods`(
+	`id` bigint(20) not null auto_increment comment '秒杀商品表',
+	`goodsId` bigint(20) default null comment '商品id',
+	`price` decimal(10,2) default '0.00' comment '秒杀价格',
+	`stockCount` int(11) default null comment '库存数量',
+	`startDate` datetime default null comment '秒杀开始时间',
+	`endDate` datetime default null comment '秒杀结束时间',
+	primary key (`id`) 
+) engine=innodb auto_increment=3 default charset=utf8mb4 comment '秒杀表';
+
+alter table `sale_goods` add index (`goodsId`);
+
+insert into `sale_goods` values(1,1,0.01,6,'2020-01-09 18:00:00','2020-01-22 13:50:50'),(2,2,0.01,9,'2020-01-11 09:00:00','2020-01-22 16:08:06');
+
+truncate table `order_info`;
+create table `order_info`(
+	`id` bigint(20) not null auto_increment comment '订单id',
+	`userId` bigint(20) default null comment '用户id',
+	`goodsId` bigint(20) default null comment '商品id',
+	`deliveryAddrId` bigint(20) default null comment '收货地址id',
+	`goodsCount` int(11) default '0' comment '商品数量',
+	`goodsPrice` decimal(10,2) default '0.00' comment '商品单价',
+	`orderChannel` tinyint(4) default '0' comment '订单方式1=pc 2=android 3=ios',
+	`status` tinyint(4) default '0' comment '订单状态 0新建 1已支付 2已发货 3已收货 4已退款 5已完成',
+	`createDate` datetime default null comment '订单创建时间',
+	`payDate` datetime default null comment '支付时间',
+	primary key (`id`) 
+) engine=innodb auto_increment=12 default charset=utf8mb4 comment '订单表';
+
+truncate table `sale_order`;
+create table `sale_order`(
+	`id` bigint(20) not null auto_increment comment '秒杀订单id',
+	`userId` bigint(20) default null comment '用户id',
+	`orderId` bigint(20) default null comment '订单id',
+	`goodsId` bigint(20) default null comment '商品id',
+	primary key (`id`) 
+) engine=innodb auto_increment=3 default charset=utf8mb4 comment '秒杀订单表';

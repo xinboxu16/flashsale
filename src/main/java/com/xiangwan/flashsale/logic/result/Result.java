@@ -22,6 +22,12 @@ public class Result<T> {
 		this.msg = codeMsg.getMsg();
 	}
 	
+	public Result(CodeMessage codeMsg, Object... args) {
+		this.code = codeMsg.getCode();
+		String message = codeMsg.getMsg();
+		this.msg = String.format(message, args);
+	}
+	
 	public Result(T data) {
 		this.code = 0;
 		this.msg = "";
